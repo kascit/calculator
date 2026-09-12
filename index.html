@@ -3,70 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator | dhanur.me</title>
-    <!-- Configure Nav -->
+    <title>Calculator — Sleek Glassmorphism Web Calculator | dhanur.me</title>
+    <meta name="description" content="A sleek, modern glassmorphic web calculator with responsive keyboard support and clean arithmetic evaluations on dhanur.me." />
+    <link rel="canonical" href="https://dhanur.me/stuff/calculator/" />
+    <link rel="icon" href="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/icons/favicon.svg" type="image/svg+xml" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dhanur.me/stuff/calculator/" />
+    <meta property="og:title" content="Calculator — Sleek Glassmorphism Web Calculator | dhanur.me" />
+    <meta property="og:description" content="A sleek, modern glassmorphic web calculator with responsive keyboard support and clean arithmetic evaluations on dhanur.me." />
+    <meta property="og:image" content="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/images/branding/logo-light.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Calculator — Sleek Glassmorphism Web Calculator | dhanur.me" />
+    <meta name="twitter:description" content="A sleek, modern glassmorphic web calculator with responsive keyboard support and clean arithmetic evaluations on dhanur.me." />
+
+    <!-- Styling -->
+    <link rel="stylesheet" href="https://dhanur.me/css/dui.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- 1. The Configuration Object -->
     <script>
     window.SiteNavConfig = {
         mode: "navbar",
-        nav: [{ name: "Home", url: "https://dhanur.me/", icon: "fa-solid fa-house" }],
+        nav: [
+            { name: "Home", url: "https://dhanur.me/", icon: "fa-solid fa-house" },
+            { name: "Stuff", url: "https://dhanur.me/stuff/", icon: "fa-solid fa-shapes" }
+        ],
         sidebarNav: [],
-        activePath: window.location.pathname,
+        activePath: "/stuff/calculator/",
         badge: { text: "TOOL", class: "badge-accent" },
         showSearch: false,
         showAppsGrid: true,
-        showThemeToggle: true
+        showThemeToggle: true,
+        showAccountButton: true,
+        enablePwa: false,
+        favicon: false
     };
     </script>
-    <script type="module" src="https://dhanur.me/js/shell.js"></script>
+    <script src="https://dhanur.me/js/shell.min.js" defer></script>
 </head>
-<body>
-    <main class="w-full max-w-sm mx-auto p-4 flex flex-col items-center justify-center min-h-[calc(100vh-6rem)]">
-        <div class="dui-surface w-full">
+<body class="min-h-screen bg-base-100 text-base-content antialiased pt-20">
+    <div class="navbar site-topbar fixed top-0 left-0 right-0 z-50 h-16 border-b border-base-content/10 bg-base-100/80 backdrop-blur-md">
+        <div class="flex-none lg:hidden">
+            <button id="shell-mobile-toggle" type="button" aria-label="Open menu" class="btn btn-ghost btn-circle btn-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <div class="flex-1 flex justify-center items-center lg:flex lg:justify-start">
+            <a href="https://dhanur.me/" class="btn btn-ghost hover:bg-transparent hover:border-transparent normal-case text-xl font-bold text-base-content logo-firefly site-logo-link">
+                <div class="relative h-18 flex items-center">
+                    <picture>
+                        <img src="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/images/branding/logo-light.png" alt="~/dhanur" class="h-18 w-auto p-[15px] logo-dark" sizes="200px" />
+                    </picture>
+                    <picture class="absolute inset-0 flex items-center">
+                        <img src="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/images/branding/logo-dark.png" alt="~/dhanur" class="h-18 w-auto p-[15px] logo-light" sizes="200px" />
+                    </picture>
+                </div>
+            </a>
+        </div>
+        <div class="flex-none hidden lg:flex">
+            <ul class="menu menu-horizontal px-1 items-center">
+                <li data-nav-chrome="apps" class="ml-1">
+                    <div class="relative p-0" data-dropdown="apps">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-square tooltip tooltip-bottom" data-tooltip-label="Apps" aria-label="Apps">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        </div>
+                        <div class="dropdown-panel z-50 mt-2 p-4 bg-base-100 border border-base-content/10 rounded-box w-64 right-0 mr-2 md:mr-4">
+                            <div class="grid grid-cols-3 gap-2" data-app-menu-grid="desktop">
+                                <div class="col-span-3 flex justify-center py-4 opacity-50"><span class="loading loading-spinner loading-sm"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li data-nav-chrome="account" class="ml-1">
+                    <div class="relative p-0" data-dropdown="account">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle tooltip tooltip-bottom" data-tooltip-label="Account" aria-label="Account">
+                            <div data-auth="nav-guest-avatar" class="w-9 h-9 rounded-full bg-base-300 flex items-center justify-center">
+                                <i class="fa-solid fa-user text-base-content/50 text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="dropdown-panel z-50 mt-2 bg-base-100 border border-base-content/10 rounded-box w-64 right-0 mr-2 md:mr-4 overflow-hidden">
+                            <div class="px-3 pt-3 pb-2 border-b border-base-content/10 cursor-default select-none">
+                                <div class="font-semibold text-sm">Ecosystem Account</div>
+                                <div class="text-xs opacity-60">Sign in for cross-app synchronization</div>
+                            </div>
+                            <ul class="menu p-2">
+                                <li data-nav-chrome="theme">
+                                    <div class="flex items-center gap-2.5 px-2.5 py-2">
+                                        <i class="fa-solid fa-circle-half-stroke w-4 text-center opacity-60"></i>
+                                        <div id="theme-toggle" class="theme-switcher w-full bg-base-300/70 text-xs font-medium">
+                                            <button data-theme-mode="light" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-sun mr-1"></i>Light</button>
+                                            <button data-theme-mode="dark" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-moon mr-1"></i>Dark</button>
+                                            <button data-theme-mode="auto" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-circle-half-stroke mr-1"></i>Auto</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a class="flex items-center gap-3" href="https://auth.dhanur.me/"><i class="fa-solid fa-right-to-bracket w-4 text-center"></i><span>Sign In</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Mobile Panel -->
+    <div id="shell-mobile-panel" class="fixed inset-0 z-[100] hidden" data-shell-mobile-panel>
+        <div class="absolute inset-0 bg-black/50" data-shell-mobile-backdrop></div>
+        <div class="absolute top-0 left-0 bottom-0 w-72 bg-base-100 shadow-2xl flex flex-col overflow-y-auto" data-shell-mobile-drawer>
+            <div class="flex items-center justify-between px-4 py-3 border-b border-base-content/10">
+                <a href="https://dhanur.me/" class="font-bold text-lg text-base-content">dhanur.me</a>
+                <button type="button" class="btn btn-ghost btn-circle btn-sm" data-shell-mobile-close aria-label="Close menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="px-4 py-3 border-b border-base-content/10">
+                <a href="/stuff/" class="btn btn-sm btn-ghost w-full justify-start"><i class="fa-solid fa-arrow-left mr-2"></i>Back to Stuff</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="w-full max-w-sm mx-auto p-4 flex flex-col items-center justify-center min-h-[calc(100vh-8rem)]">
+        <!-- Breadcrumbs -->
+        <div class="w-full flex items-center justify-between text-xs text-base-content/60 mb-3 px-1">
+            <div class="flex items-center gap-2">
+                <a href="https://dhanur.me/" class="hover:text-base-content no-underline">Home</a>
+                <span>/</span>
+                <a href="/stuff/" class="hover:text-base-content no-underline">Stuff</a>
+                <span>/</span>
+                <span class="text-base-content font-medium">Calculator</span>
+            </div>
+            <a href="/stuff/" class="hover:text-primary no-underline flex items-center gap-1 text-[11px]">
+                <i class="fa-solid fa-grid-2"></i> All Tools
+            </a>
+        </div>
+
+        <h1 class="sr-only">Calculator — Glassmorphism Web Calculator</h1>
+
+        <div class="dui-surface w-full shadow-lg border border-base-content/10 rounded-2xl overflow-hidden backdrop-blur-xl">
             <div class="dui-surface-body p-6">
                 <!-- Display -->
-                <div class="bg-base-300 rounded-xl p-4 flex justify-end items-end h-24 mb-4 shadow-inner">
-                    <span id="display" class="font-mono text-4xl font-bold tracking-tight text-base-content overflow-hidden">0</span>
+                <div class="bg-base-200/60 rounded-xl p-4 flex flex-col justify-end items-end h-24 mb-4 border border-base-content/5 shadow-inner">
+                    <div id="subdisplay" class="text-xs font-mono text-base-content/40 h-4 overflow-hidden"></div>
+                    <span id="display" class="font-mono text-4xl font-bold tracking-tight text-base-content overflow-hidden text-right w-full">0</span>
                 </div>
+
                 <!-- Keypad -->
                 <div class="grid grid-cols-4 gap-2">
-                    <button class="dui-btn dui-btn-ghost bg-base-content/10 col-span-2" onclick="clearDisplay()">AC</button>
-                    <button class="dui-btn dui-btn-ghost bg-base-content/10" onclick="appendOp('/')">÷</button>
-                    <button class="dui-btn bg-info/20 text-info font-bold" onclick="appendOp('*')">×</button>
+                    <button type="button" class="dui-btn dui-btn-ghost bg-base-content/10 col-span-2 font-bold" onclick="clearDisplay()">AC</button>
+                    <button type="button" class="dui-btn dui-btn-ghost bg-base-content/10 font-bold" onclick="appendOp('/')">÷</button>
+                    <button type="button" class="dui-btn bg-info/20 text-info font-bold" onclick="appendOp('*')">×</button>
 
-                    <button class="dui-btn dui-btn-ghost" onclick="appendNum('7')">7</button>
-                    <button class="dui-btn dui-btn-ghost" onclick="appendNum('8')">8</button>
-                    <button class="dui-btn dui-btn-ghost" onclick="appendNum('9')">9</button>
-                    <button class="dui-btn bg-info/20 text-info font-bold" onclick="appendOp('-')">-</button>
+                    <button type="button" class="dui-btn dui-btn-ghost font-medium text-lg" onclick="appendNum('7')">7</button>
+                    <button type="button" class="dui-btn dui-btn-ghost font-medium text-lg" onclick="appendNum('8')">8</button>
+                    <button type="button" class="dui-btn dui-btn-ghost font-medium text-lg" onclick="appendNum('9')">9</button>
+                    <button type="button" class="dui-btn bg-info/20 text-info font-bold" onclick="appendOp('-')">-</button>
 
-                    <button class="dui-btn dui-btn-ghost" onclick="appendNum('4')">4</button>
-                    <button class="dui-btn dui-btn-ghost" onclick="appendNum('5')">5</button>
-                    <button class="dui-btn dui-btn-ghost" onclick="appendNum('6')">6</button>
-                    <button class="dui-btn bg-info/20 text-info font-bold" onclick="appendOp('+')">+</button>
+                    <button type="button" class="dui-btn dui-btn-ghost font-medium text-lg" onclick="appendNum('4')">4</button>
+                    <button type="button" class="dui-btn dui-btn-ghost font-medium text-lg" onclick="appendNum('5')">5</button>
+                    <button type="button" class="dui-btn dui-btn-ghost font-medium text-lg" onclick="appendNum('6')">6</button>
+                    <button type="button" class="dui-btn bg-info/20 text-info font-bold" onclick="appendOp('+')">+</button>
 
-                    <button class="dui-btn dui-btn-ghost" onclick="appendNum('1')">1</button>
-                    <button class="dui-btn dui-btn-ghost" onclick="appendNum('2')">2</button>
-                    <button class="dui-btn dui-btn-ghost" onclick="appendNum('3')">3</button>
-                    <button class="dui-btn dui-btn-primary row-span-2 font-bold text-lg" onclick="calculate()">=</button>
+                    <button type="button" class="dui-btn dui-btn-ghost font-medium text-lg" onclick="appendNum('1')">1</button>
+                    <button type="button" class="dui-btn dui-btn-ghost font-medium text-lg" onclick="appendNum('2')">2</button>
+                    <button type="button" class="dui-btn dui-btn-ghost font-medium text-lg" onclick="appendNum('3')">3</button>
+                    <button type="button" class="dui-btn dui-btn-primary row-span-2 font-bold text-xl" onclick="calculate()">=</button>
 
-                    <button class="dui-btn dui-btn-ghost col-span-2" onclick="appendNum('0')">0</button>
-                    <button class="dui-btn dui-btn-ghost" onclick="appendNum('.')">.</button>
+                    <button type="button" class="dui-btn dui-btn-ghost col-span-2 font-medium text-lg" onclick="appendNum('0')">0</button>
+                    <button type="button" class="dui-btn dui-btn-ghost font-medium text-lg" onclick="appendNum('.')">.</button>
                 </div>
             </div>
         </div>
+
+        <footer class="mt-8 text-center text-xs text-base-content/40">
+            <p>Part of the <a href="https://dhanur.me/" class="underline hover:text-base-content">dhanur.me</a> ecosystem</p>
+        </footer>
     </main>
 
     <script>
         let current = '';
         const dp = document.getElementById('display');
+        const sub = document.getElementById('subdisplay');
         function update() { dp.textContent = current || '0'; }
-        function appendNum(n) { current += n; update(); }
-        function appendOp(o) { current += ' ' + o + ' '; update(); }
-        function clearDisplay() { current = ''; update(); }
-        function calculate() {
-            try { current = eval(current).toString(); } catch(e) { current = 'Error'; }
+        function appendNum(n) {
+            if (n === '.' && current.slice(-1) === '.') return;
+            current += n;
             update();
-            current = '';
         }
+        function appendOp(o) {
+            if (!current && o === '-') { current = '-'; update(); return; }
+            if (!current) return;
+            const last = current.trim().slice(-1);
+            if (['+', '-', '*', '/'].includes(last)) {
+                current = current.trim().slice(0, -1) + ' ' + o + ' ';
+            } else {
+                current += ' ' + o + ' ';
+            }
+            update();
+        }
+        function clearDisplay() { current = ''; sub.textContent = ''; update(); }
+        function calculate() {
+            if (!current) return;
+            try {
+                // Safe tokenizer-based evaluation without eval()
+                const tokens = current.trim().split(/\s+/);
+                if (!tokens.length) return;
+                let res = parseFloat(tokens[0]);
+                for (let i = 1; i < tokens.length; i += 2) {
+                    const op = tokens[i];
+                    const next = parseFloat(tokens[i + 1]);
+                    if (isNaN(next)) break;
+                    if (op === '+') res += next;
+                    else if (op === '-') res -= next;
+                    else if (op === '*') res *= next;
+                    else if (op === '/') res = next !== 0 ? res / next : 'Error';
+                }
+                sub.textContent = current + ' =';
+                current = String(Number.isFinite(res) ? Math.round(res * 1e8) / 1e8 : res);
+            } catch(e) {
+                current = 'Error';
+            }
+            update();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') appendNum(e.key);
+            else if (e.key === '.') appendNum('.');
+            else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') appendOp(e.key);
+            else if (e.key === 'Enter' || e.key === '=') { e.preventDefault(); calculate(); }
+            else if (e.key === 'Backspace') {
+                current = current.trim().slice(0, -1).trim();
+                update();
+            } else if (e.key === 'Escape') clearDisplay();
+        });
     </script>
 </body>
 </html>
